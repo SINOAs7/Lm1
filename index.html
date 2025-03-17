@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리니지M 업데이트 소식</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8f9fa; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h2 { text-align: center; color: #333; }
+        .update { margin-bottom: 20px; padding: 10px; border-left: 5px solid #007bff; background: #e9f2ff; }
+        .date { font-weight: bold; color: #007bff; }
+        .details { margin-top: 5px; }
+    </style>
+    <script>
+        async function fetchUpdates() {
+            const url = "YOUR_GOOGLE_SCRIPT_DEPLOY_URL"; // 위에서 복사한 URL 입력
+            const response = await fetch(url);
+            const updates = await response.json();
+            
+            const container = document.getElementById("updates");
+            container.innerHTML = "";
+
+            updates.forEach(update => {
+                const div = document.createElement("div");
+                div.classList.add("update");
+                div.innerHTML = `<div class="date">${update.date}</div><div class="details">${update.details}</div>`;
+                container.appendChild(div);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchUpdates);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>리니지M 업데이트 소식</h2>
+        <div id="updates">로딩 중...</div>
+    </div>
+</body>
+</html>
